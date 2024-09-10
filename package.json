@@ -1,0 +1,41 @@
+{
+  "name": "@xarber/xshopjs",
+  "version": "1.0.0b",
+  "description": "A simple and customizable game shop designed for Tinfoil on Nintendo Switch (HB-CFW)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Tinfoil",
+    "Nintendo",
+    "Switch",
+    "Homebrew",
+    "Atmosphere",
+    "Shop"
+  ],
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "chokidar": "3.5.3",
+    "deasync": "^0.1.30",
+    "decompress": "4.2.1",
+    "formidable": "^3.5.1",
+    "ftp": "0.3.10",
+    "hi-base32": "^0.5.1",
+    "lookpath": "^1.2.2",
+    "node-7z-forall": "2.1.5",
+    "node-torrent": "0.2.2",
+    "otpauth": "^9.3.2",
+    "public-ip": "6.0.1",
+    "qrcode": "^1.5.4",
+    "request": "^2.88.2",
+    "sync-fetch": "0.5.2",
+    "unrar-promise": "3.1.0"
+  },
+  "type": "module",
+  "bin": {
+    "xshop": "index.js"
+  },
+  "author": "Xarber",
+  "license": "ISC"
+}
