@@ -551,8 +551,8 @@
                         else {var p = ``;var n = ``;if (prev >= 1){p=`<button onclick="document.querySelector('input#q').value='*:${prev.toString()}';src('*:${prev.toString()}', document.querySelector('body > .srs'), document.querySelector('body > .games'));">&lt;-</button>`};if(nv){n=`<button onclick="document.querySelector('input#q').value='*:${next.toString()}';src('*:${next.toString()}', document.querySelector('body > .srs'), document.querySelector('body > .games'));">-&gt;</button>`;};t.innerHTML = `<div class="pageSelector">${p}<p>Page ${page}</p>${n}</div>`}
                         for(var g of res) {
                             var copyURL =  ((g.url.indexOf('http') != 0) ? url.replaceAll(' ', '%20').replaceAll("'", '%27') : "")+g.url.replaceAll(' ', '%20').replaceAll("'", '%27');
+                            t.innerHTML += `<div class="game" oncontextmenu="navigator.clipboard.writeText('${copyURL}');document.querySelector('#popup-clipboard-alert').classList.remove('hided');return false" onclick="window.open('${g.url}');"><div style="background-image: url('${g.bkg}');"></div><div><img src="${g.src}" onerror="this.src='${g.err_src}';" alt=""><h4>[${g.pltfrm}] ${g.name}</h4><div class="ginfo">${g.size} - ${g.version}</div></div>`;
                         }
-                        t.innerHTML += `<div class="game" oncontextmenu="navigator.clipboard.writeText('${copyURL}');document.querySelector('#popup-clipboard-alert').classList.remove('hided');return false" onclick="window.open('${g.url}');"><div style="background-image: url('${g.bkg}');"></div><div><img src="${g.src}" onerror="this.src='${g.err_src}';" alt=""><h4>[${g.pltfrm}] ${g.name}</h4><div class="ginfo">${g.size} - ${g.version}</div></div>`;
                         sec(t);
                     }
                     return res;

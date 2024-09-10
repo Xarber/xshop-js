@@ -1379,8 +1379,8 @@ var app = (req, res)=>{
                     res.writeHead(200, {'Content-type':'application/json'});
                     var resp = JSON.parse(loadSources([{source:"games", active: true}], undefined, req)).res;
                     var pages = [];
-                    for (let i = 0; i < resp.length; i += 2) {
-                        const chunk = resp.slice(i, i + 2);
+                    for (let i = 0; i < resp.length; i += 10) {
+                        const chunk = resp.slice(i, i + 10);
                         pages.push(chunk);
                     }
                     var pg = req.urldata.query.page ?? "1";
