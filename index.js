@@ -1011,7 +1011,6 @@ var app = (req, res)=>{
         var form = new IncomingForm();
         form.maxFileSize = server.uploads.maxSize ?? 1024 * 1024 * 1024; //1 GB
         form.parse(req, function (err, fields, files) {
-            console.log("Getting file");
             var reqUrlData = {
                 protocol: req.protocol,
                 headers: req.headers,
