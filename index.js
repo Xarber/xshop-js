@@ -882,7 +882,7 @@ function fileToGame(fileArray, defIcon, mode, tdb) {
     }
     return output;
 }
-function search(query, gamelist, caseSensitive = 0, smartsearch = 0, maxErrCount = 3) {
+function search(query, gamelist, caseSensitive = 0, smartsearch = 1, maxErrCount = 3) {
     maxErrCount += 1;
     var absoluteResult = [];
     var newRes = [];
@@ -1220,7 +1220,7 @@ var app = (req, res)=>{
         req.urldata = {
             protocol: req.protocol,
             headers: req.headers,
-            path: (server.root + ((req.url == "/") ? "/index.html" : req.url)).replaceAll("//", '/'),
+            path: (server.root + ((req.url == "/") ? "/index.html" : decodeURI(req.url))).replaceAll("//", '/'),
             port: (req.protocol == "http:") ? server.port.http : ((req.protocol == "https:") ? server.port.https : undefined),
             auth: client.auth,
             host: req.headers.host.split(':')[0],
