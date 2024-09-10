@@ -11,7 +11,6 @@ import path           from "path";
 import fs             from "fs";
 import {publicIpv4}   from "public-ip";
 import util           from "util";
-//import jwt            from "jsonwebtoken";
 import crypto         from "crypto";
 import zlib           from "zlib";
 import {IncomingForm} from "formidable";
@@ -24,7 +23,6 @@ import * as OTPAuth   from "otpauth";
 import deasync        from "deasync";
 import base32         from "hi-base32";
 import os             from "os";
-//import checkDiskSpace from "check-disk-space";
 let    peerjs       = false;
 let    websocket    = false;
 try {
