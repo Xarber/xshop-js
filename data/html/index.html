@@ -173,7 +173,7 @@
                     <i class="fa-2x fa-folder-open fa-solid"></i>
                     <p>Select files ...</p>
                 </label>
-                <input name="file[]" id="files" multiple type="file">
+                <input name="file" id="files" multiple type="file">
                 <div class="progress"></div>
                 <select name="uplloc" id="uplloc" onchange="var btn = document.querySelector('button#upload-form-submit');if (this.value != 'uploads/') {btn.innerHTML = 'Upload [NEEDS KEY!]';btn.type = 'button';btn.setAttribute('onclick', 'document.querySelector(`#upload-confirm-key`).classList.remove(`hided`);');} else {btn.innerHTML = 'Upload';btn.type = 'submit';btn.setAttribute('onclick', '');}">
                     <option value="uploads/" selected>uploads/</option>
