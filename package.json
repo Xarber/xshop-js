@@ -1,6 +1,6 @@
 {
   "name": "@xarber/xshopjs",
-  "version": "1.0.1b",
+  "version": "1.0.1c",
   "description": "A simple and customizable game shop designed for Tinfoil on Nintendo Switch (HB-CFW)",
   "main": "index.js",
   "scripts": {

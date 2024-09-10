@@ -886,7 +886,12 @@ function search(query, gamelist, caseSensitive = 0, smartsearch = 0, maxErrCount
     maxErrCount += 1;
     var absoluteResult = [];
     var newRes = [];
+    var q = caseSensitive === 0 ? query.toLowerCase() : query;
+    var equery = q.split("");
+    var squery = q.split(" ");
     for (var o of gamelist) {
+        o.originalName = o.name;
+        o.name = o.name.substr(o.name.lastIndexOf('/')+1);
         if (smartsearch) {
             var eligible = true;
             var absolute = false;
@@ -896,9 +901,6 @@ function search(query, gamelist, caseSensitive = 0, smartsearch = 0, maxErrCount
             var esearch = search.split("");
             var dsearch = search.split(".");
             var ssearch = search.split(" ");
-            var q = caseSensitive === 0 ? query.toLowerCase() : query;
-            var equery = q.split("");
-            var squery = q.split(" ");
             for (var ltr of equery) {
                 if (!esearch.includes(ltr)) {
                     eligible = false;
@@ -908,6 +910,8 @@ function search(query, gamelist, caseSensitive = 0, smartsearch = 0, maxErrCount
             }
             for (var dp of dsearch) {
                 if (dp == query) {
+                    o.name = o.originalName;
+                    delete(o.originalName);
                     absoluteResult.push(o);
                     absolute = true;
                     break;
@@ -926,10 +930,14 @@ function search(query, gamelist, caseSensitive = 0, smartsearch = 0, maxErrCount
                 absoluteResult = [...absoluteResult, o];
                 continue;
             }
+            o.name = o.originalName;
+            delete(o.originalName);
             if (search.indexOf(query) != -1) {newRes = [...newRes, o]}
             else {newRes.push(o)}
         } else {
             if (((caseSensitive === 1 && o.name.indexOf(query) != -1) || (caseSensitive === 0 && o.name.toLowerCase().indexOf(query) != -1))) {
+                o.name = o.originalName;
+                delete(o.originalName);
                 newRes.push(o)
             }
         }
