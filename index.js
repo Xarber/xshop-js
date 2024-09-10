@@ -834,7 +834,7 @@ function loadSources(sources, formats, req, localOnly) {
             if (typeof file === "string") {
                 const stat = fs.statSync(file);
                 const fmtime = new Date(stat.mtimeMs).toString().split(' ') ?? ['Thu', 'Jan', '01', '1970', '00:00:00', 'UTC'];
-                convertedFile = {name: protocol+'//'+host+'/'+file, type: "file", size: stat.size, mtime: `${fmtime[0]}, ${fmtime[2]} ${fmtime[1]} ${fmtime[3]} ${fmtime[4]} ${fmtime[5]}`};
+                convertedFile = {name: protocol+'//'+host+':'+req.urldata.port+'/'+file, type: "file", size: stat.size, mtime: `${fmtime[0]}, ${fmtime[2]} ${fmtime[1]} ${fmtime[3]} ${fmtime[4]} ${fmtime[5]}`};
             } else if (typeof file === "object" && !Array.isArray(file)) {
                 convertedFile = {name: file.name ?? file.url, type: file.type ?? "file", size: file.size ?? 0, mtime: file.mtime ?? file.edit ?? `Thu, 01 Jan 1970 00:00:00 UTC`};
             }
