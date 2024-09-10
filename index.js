@@ -858,6 +858,14 @@ function fileToGame(fileArray, defIcon, mode, tdb) {
         parsedgameinfo.url = game.name;
         parsedgameinfo.name = game.name.substring(game.name.lastIndexOf('/')+1).replace(`[${ginfo[0]}][${ginfo[1]}]`, "")
         parsedgameinfo.filename = game.name.slice(0, game.name.indexOf('.'));
+        parsedgameinfo.titleid = ginfo[0] ?? "";
+        parsedgameinfo.size = formatBytes(game.size);
+        parsedgameinfo.version = ginfo[1] ?? "";
+        parsedgameinfo.src = settings.tinfoil_icons == 1 ? "https://tinfoil.media/ti/"+parsedgameinfo.titleid+"/512/512/" : "";
+        parsedgameinfo.bkg = settings.tinfoil_icons == 1 ? "https://tinfoil.media/thi/"+parsedgameinfo.titleid+"/0/0/" : "";
+        parsedgameinfo.err_src = (settings.modes[mode] ?? {}).icon ?? "";
+        parsedgameinfo.pltfrm = mode;
+        parsedgameinfo.infos = ginfo;
         var toReplace = [];
         for (var info of ginfo) {
             if (info.length === 14 && !isNaN(info) && info.split('0').length > 1) {parsedgameinfo.id = info;toReplace.push(`[${info}]`)}
@@ -1367,7 +1375,7 @@ var app = (req, res)=>{
                 } else if (typeof req.headers['fetch-search'] != "undefined") {
                     //*fetch-search           = Search games in shop
                     var nres = search(req.urldata.query.q ?? "", JSON.parse(loadSources(settings.sources, false, req)).res,);
-                    var newresponse = fileToGame(nres);
+                    var newresponse = fileToGame(nres, null, (req.urldata.query.type ?? Object.keys(settings.modes)[0] ?? "").toLowerCase());
                     res.writeHead(200, {'Content-type':'application/json'});
                     res.end(JSON.stringify(newresponse));
                 } else if (typeof req.headers['fetch-groups'] != "undefined") {
@@ -1386,7 +1394,7 @@ var app = (req, res)=>{
                     var pg = req.urldata.query.page ?? "1";
                     pg = Number(pg) - 1;
                     var result = pages[pg] ?? [];
-                    res.end(JSON.stringify(fileToGame(result)));
+                    res.end(JSON.stringify(fileToGame(result, null, (req.urldata.query.type ?? Object.keys(settings.modes)[0] ?? "").toLowerCase())));
                 } else if (typeof req.headers['fetch-files'] != "undefined") {
                     //*fetch-files            = File Browser
                     res.setHeader('Content-Type', 'application/json');
